@@ -39,7 +39,7 @@ function App() {
         <h1>Tip Calculator</h1>
         <input min={0} onChange={billHandler} type="number" className="bill" placeholder='Bill:' value={bill}/>
         <input min={0} onChange={percentageHandler} type="number" className="tip-percentage" placeholder='Tip Percantage:' value={percentage}/>
-        <input min={0} onChange={numberHandler} type="number" className="number-of-people" placeholder='Number of People' value={number}/>
+        <input min={1} onChange={numberHandler} type="number" className="number-of-people" placeholder='Number of People' value={number}/>
         <div className="total-tip">Total Tip: {total || '0'}</div>
         <div className="tip-per-person">Number of People: {people || '0'}</div>
       </div>
