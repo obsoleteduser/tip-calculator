@@ -13,7 +13,7 @@ function App() {
 
   useEffect(()=>{
     setTotal(bill*percentage/100)
-    setPeople(bill*percentage/100/number)
+    setPeople(+(bill*percentage/100/number).toFixed(2))
   }, [bill, percentage, number])
 
   const billHandler = (event) =>{
