@@ -1,17 +1,24 @@
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 function App() {
 
-  const [bill, setBill] = useState(0)
-  const [percentage, setPercentage] = useState(0)
-  const [number, setNumber] = useState(0)
-  const [total, setTotal] = useState(0)
-  const [people, setPeople] = useState(0) 
+  const [bill, setBill] = useState()
+  const [percentage, setPercentage] = useState()
+  const [number, setNumber] = useState()
+  const [total, setTotal] = useState()
+  const [people, setPeople] = useState() 
+
+
+  useEffect(()=>{
+    setTotal(bill*percentage/100)
+    setPeople(bill*percentage/100/number)
+  }, [bill, percentage, number])
 
   const billHandler = (event) =>{
     setBill(event.target.value)
+    
   }
 
 
@@ -30,11 +37,11 @@ function App() {
     <div className="App">
       <div className="tip-calculator">
         <h1>Tip Calculator</h1>
-        <input onChange={()=>{billHandler}} type="number" className="bill" placeholder='Bill:' value={bill}/>
-        <input onChange={()=>{percentageHandler}} type="number" className="tip-percentage" placeholder='Tip Percantage:' value={percentage}/>
-        <input onChange={()=>{numberHandler}} type="number" className="number-of-people" placeholder='Number of People' value={number}/>
-        <div className="total-tip">Total Tip: {total}</div>
-        <div className="tip-per-person">Number of People: {people}</div>
+        <input onChange={billHandler} type="number" className="bill" placeholder='Bill:' value={bill}/>
+        <input onChange={percentageHandler} type="number" className="tip-percentage" placeholder='Tip Percantage:' value={percentage}/>
+        <input onChange={numberHandler} type="number" className="number-of-people" placeholder='Number of People' value={number}/>
+        <div className="total-tip">Total Tip: {total || '0'}</div>
+        <div className="tip-per-person">Number of People: {people || '0'}</div>
       </div>
     </div>
   )
